@@ -1,3 +1,5 @@
+%%R
+
 # clasificacion_variables.R — Parte A: clasificación de las variables de clientes.csv.
 #
 # El archivo data/clientes.csv tiene 12 clientes y 7 variables (más el id).
@@ -33,9 +35,10 @@ str(clientes)
 # TODO 2: completa el bucle para imprimir, por columna, cuántos valores únicos
 #         hay y cuáles son. Pista: for (columna in names(clientes)) { ... } con
 #         unique() y length(). ¿Cuántas categorías tiene genero?
-# for (columna in names(clientes)) {
-#   ...
-# }
+for (columna in names(clientes)) {
+  cat("Variable", columna, "| Únicos:", length(unique(clientes[[columna]])), 
+      "| Valores:", paste(unique(clientes[[columna]]), collapse = ", "), "\n")
+}
 
 # ---------------------------------------------------------------------------
 # 4. Declarar el orden de las variables ordinales
@@ -46,10 +49,30 @@ str(clientes)
 #
 # TODO 3: convierte nivel_educacion con factor(..., levels = c(...), ordered = TRUE).
 #         Comprueba con min(): debe devolver "Primaria".
+clientes$nivel_educacion <- factor(
+  clientes$nivel_educacion,
+  levels = c("Primaria", "Secundaria", "Superior", "Posgrado"),
+  ordered = TRUE
+)
+print(min(clientes$nivel_educacion))
+
 # TODO 4: haz lo mismo con satisfaccion (escala 1–5 como etiquetas ordenadas).
 #         Prueba extra: ¿qué pasa si en levels escribes "Postgrado" (con t) para
 #         nivel_educacion? Cuenta los faltantes con sum(is.na(...)) — la trampa
 #         del typo es silenciosa.
+clientes$satisfaccion <- factor(
+  clientes$satisfaccion,
+  levels = c(1, 2, 3, 4, 5),
+  ordered = TRUE
+)
+
+# Prueba extra del typo:
+nivel_educacion_typo <- factor(
+  clientes$nivel_educacion,
+  levels = c("Primaria", "Secundaria", "Superior", "Postgrado"),
+  ordered = TRUE
+)
+cat("Faltantes con typo:", sum(is.na(nivel_educacion_typo)), "\n")
 
 # ---------------------------------------------------------------------------
 # 5. Resumen de la clasificación (para el informe)
@@ -57,14 +80,14 @@ str(clientes)
 # TODO 5: completa el resumen con el tipo de cada variable (el criterio que
 #         justifica cada clasificación va en el informe).
 clasificacion <- c(
-  cliente_id         = "…",
-  edad               = "…",
-  numero_hijos       = "…",
-  genero             = "…",
-  nivel_educacion    = "…",
-  ciudad             = "…",
-  ingresos_mensuales = "…",
-  satisfaccion       = "…"
+  cliente_id         = "Cualitativa nominal",
+  edad               = "Cuantitativa discreta",
+  numero_hijos       = "Cuantitativa discreta",
+  genero             = "Categórica binaria",
+  nivel_educacion    = "Categórica ordinal",
+  ciudad             = "Categórica nominal",
+  ingresos_mensuales = "Cuantitativa continua",
+  satisfaccion       = "Categórica ordinal"
 )
 cat("\nResumen de la clasificación (para el informe):\n")
 for (variable in names(clasificacion)) {

@@ -73,6 +73,6 @@ Implica un riesgo alto por error de muestreo. Si RetailAndina S.A. toma una deci
 
 ## Conclusiones
 
-1. Al finalizar el trabajao de laboratorio, aprendí que elegir muestras por simple conveniencia (`head`) destruye la representatividad de los datos, ya que un criterio no probabilístico puede excluir por completo a regiones enteras como ocurrió al dejar fuera a Guayaquil y Cuenca, demostrando que un mal diseño arruina cualquier análisis posterior.
+1. Al finalizar el trabajo de laboratorio, aprendí que elegir muestras por simple conveniencia (`head`) destruye la representatividad de los datos, ya que un criterio no probabilístico puede excluir por completo a regiones enteras como ocurrió al dejar fuera a Guayaquil y Cuenca, demostrando que un mal diseño arruina cualquier análisis posterior.
 2. Ademàs, aprendí que confiar en una sola muestra o en una única semilla (`random_state`) es un error metodológico grave, ya que la variabilidad aleatoria hace que cada sorteo fluctúe; por eso, evaluar múltiples escenarios es indispensable para saber qué tan estable es el resultado.
 3. Finalmente a la gerencia le recomendaría que, antes de aceptar o solicitar un estudio basado en muestras, exija total transparencia sobre cómo se recolectó la información y si se verificó la estabilidad de las estimaciones, evitando así tomar decisiones estratégicas de alto impacto basadas en datos frágiles o sesgados.
